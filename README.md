@@ -128,10 +128,8 @@ Training metrics (accuracy and loss) are plotted to track performance over time.
 
 ---
 
-👥 Contributors
+## 👥 Contributors
 ✨ Rithvika T
 ✨ Monish
 ✨ Manni
----
 
-Let me know if you'd like this exported into a proper `README.md` file or if you'd like badges, preview images, or citations for datasets or academic work.
