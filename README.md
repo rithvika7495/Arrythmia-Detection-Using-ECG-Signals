@@ -92,6 +92,6 @@ Sequential([
 ## 👥 Contributors
 
 * ✨ **Rithvika T**
-* ✨ **Monish**
-* ✨ **Manni**
+* ✨ **Monish P**
+* ✨ **Manni Chellappan Ramu**
 
