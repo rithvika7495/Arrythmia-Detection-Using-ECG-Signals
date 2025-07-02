@@ -1,3 +1,7 @@
+Perfect! Here's the updated **GitHub-friendly and detailed README.md**, now including **Monish** and **Manni** in the contributors section:
+
+---
+
 # 🫀 ECG Arrhythmia Detection using Deep Learning
 
 This project focuses on detecting and classifying cardiac arrhythmias from ECG (Electrocardiogram) signal data using a 1D Convolutional Neural Network (CNN). The model is trained on preprocessed heartbeat segments from the MIT-BIH Arrhythmia Database.
@@ -12,10 +16,9 @@ To develop a deep learning model that can **automatically classify ECG beats** i
 
 ## 📚 Dataset
 
-The project uses the **MIT-BIH Arrhythmia Database**, which contains annotated ECG recordings sampled at 360 Hz. The dataset is loaded from the local path:
+We use the **MIT-BIH Arrhythmia Database**, which contains annotated ECG recordings sampled at 360 Hz.
 
-
-### Classes Considered:
+**Classes considered**:
 
 * **N**: Normal
 * **L**: Left bundle branch block beat
@@ -23,113 +26,76 @@ The project uses the **MIT-BIH Arrhythmia Database**, which contains annotated E
 * **A**: Atrial premature beat
 * **V**: Premature ventricular contraction
 
+Each beat is segmented, labeled, and preprocessed for model training.
+
 ---
 
 ## 🛠️ Technologies and Libraries
 
-* **Python**, **NumPy**, **Pandas**, **Matplotlib**
+* **Python**
+* **NumPy**, **Pandas**, **Matplotlib**
 * **SciPy**, **PyWavelets**
-* **Keras** (TensorFlow backend)
 * **Scikit-learn**
+* **Keras / TensorFlow**
 * **Imbalanced-learn (SMOTE)**
 
 ---
 
-## 🔄 Workflow Description
+## 🔄 Workflow Overview
 
-### 1. **Signal Extraction**
+### 1. **Data Extraction and Labeling**
 
-All files from the ECG database folder are read and parsed using a loop. Each signal is segmented based on annotations and stored in `X` and `y` lists for features and labels, respectively.
-
-```python
-filenames = next(os.walk(filepath))[2]
-for f in filenames:
-    ...
-    signaldata = ...
-    annotations = ...
-```
-
----
+* ECG signal files are read from the directory.
+* Annotations are used to segment each signal into labeled heartbeats.
+* Beat segments are stored in `X` and corresponding labels in `y`.
 
 ### 2. **Preprocessing**
 
-* **Wavelet Transform (`pywt`)** is applied to denoise the ECG signals.
-* Each segment is **normalized and reshaped** to a fixed size (360 data points) to ensure consistency in CNN input.
+* **Wavelet transforms** (`pywt`) are applied for denoising.
+* All beats are **normalized and resized** to 360 data points.
+* Classes are **encoded** using `LabelEncoder` and one-hot encoded.
 
----
+### 3. **Class Imbalance Handling**
 
-### 3. **Handling Imbalance with SMOTE**
+* **SMOTE (Synthetic Minority Over-sampling Technique)** is used to balance underrepresented classes like `A` and `V`.
 
-Due to the natural imbalance in arrhythmia classes, **Synthetic Minority Oversampling Technique (SMOTE)** is used to synthetically generate new samples for underrepresented classes.
+### 4. **Model Architecture**
 
-```python
-sm = SMOTE()
-X_resampled, y_resampled = sm.fit_resample(X, y)
-```
-
----
-
-### 4. **Label Encoding**
-
-Labels are converted into one-hot encoded vectors for classification using `LabelEncoder` and `to_categorical`.
-
----
-
-### 5. **Model Architecture (1D CNN)**
-
-A simple yet effective 1D CNN is implemented using Keras:
+A **1D CNN** model is constructed using Keras:
 
 ```python
-model = Sequential()
-model.add(Conv1D(...))
-model.add(AvgPool1D(...))
-model.add(Flatten())
-model.add(Dense(..., activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(n_classes, activation='softmax'))
+Sequential([
+    Conv1D(...),
+    AvgPool1D(...),
+    Flatten(),
+    Dense(...),
+    Dropout(0.5),
+    Dense(n_classes, activation='softmax')
+])
 ```
 
-The model learns spatial dependencies and patterns in ECG waveforms to classify beats.
+* The CNN captures local temporal features in ECG signals.
+
+### 5. **Training and Evaluation**
+
+* The dataset is split into training and test sets.
+* The model is compiled using the **Adam optimizer** and **categorical crossentropy** loss.
+* Training and validation accuracy/loss are plotted.
+* A **confusion matrix** visualizes class-wise performance.
 
 ---
 
-### 6. **Training the Model**
+## 📊 Results
 
-* Optimizer: `Adam`
-* Loss Function: `categorical_crossentropy`
-* Epochs: Defined based on dataset
-* Validation set split using `train_test_split`
-
-Training metrics (accuracy and loss) are plotted to track performance over time.
-
----
-
-### 7. **Evaluation**
-
-* The model is evaluated on a test set.
-* A **confusion matrix** is plotted to visualize the classification results across arrhythmia types.
-* Accuracy is printed and interpreted.
-
----
-
-## 📊 Results and Observations
-
-* The CNN model shows strong accuracy in detecting Normal and certain abnormal classes like `L` and `R`.
-* SMOTE helped in balancing performance for minority classes (`A`, `V`).
-* Visualization of training vs validation accuracy indicates whether the model is overfitting or underfitting.
-
----
-
-## 🔮 Potential Improvements
-
-* Use **Bidirectional LSTM** or **Transformer-based models** for sequential dependencies.
-* Deploy the model via **Streamlit** for web-based ECG uploads.
-* Train on larger datasets with more class granularity.
+* The model performed well on majority classes and showed improved balance with SMOTE.
+* Visualization tools like accuracy/loss curves and confusion matrices help assess performance.
+* This model provides a strong baseline for future real-time arrhythmia detection systems.
 
 ---
 
 ## 👥 Contributors
-✨ Rithvika T
-✨ Monish
-✨ Manni
+
+* ✨ **Rithvika T**
+* ✨ **Monish**
+* ✨ **Manni**
 
