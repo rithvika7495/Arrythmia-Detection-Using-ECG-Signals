@@ -1,4 +1,4 @@
-# 🫀 ECG Arrhythmia Detection using Deep Learning
+# 🫀 Arrythmia Detection Using ECG Signals
 
 This project focuses on detecting and classifying cardiac arrhythmias from ECG (Electrocardiogram) signal data using a 1D Convolutional Neural Network (CNN). The model is trained on preprocessed heartbeat segments from the MIT-BIH Arrhythmia Database.
 
