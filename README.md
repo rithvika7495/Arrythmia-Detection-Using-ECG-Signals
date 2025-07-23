@@ -95,3 +95,10 @@ Sequential([
 * ✨ **Monish P**
 * ✨ **Manni Chellappan Ramu**
 
+---
+## ⚠️ Dataset & Model Access Notice
+
+This repository does not include the ECG dataset or trained model weights due to privacy and licensing concerns.
+
+To request access, please contact the author. This project is available for academic collaboration and non-commercial use only.
+
